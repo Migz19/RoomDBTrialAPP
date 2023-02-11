@@ -18,6 +18,8 @@ interface UsersRepo : UserDao, UsersApiService {
     override fun getUsersByGender(gender: Char?): List<UserModel>
 
     override fun deleteUserById(user_id: Long)
+    override fun clearDb()
+
     /////////////////////////////////////////////////
     override fun deleteUserfromRemote(user: UserModel) {
         super.deleteUserfromRemote(user)

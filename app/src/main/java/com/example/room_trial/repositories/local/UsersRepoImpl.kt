@@ -31,5 +31,9 @@ class UsersRepoImpl(private val userDao: UserDao) : UsersRepo {
         userDao.deleteUserById(user_id)
     }
 
+    override fun clearDb() {
+        userDao.clearDb()
+    }
+
 
 }

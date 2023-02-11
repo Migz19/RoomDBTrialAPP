@@ -43,4 +43,8 @@ class UserController(userDao: UserDao){
                 usersRepo.updateUserLocal(newUser)
         }
     }
+    fun clearDb(){
+        if (usersList.isNotEmpty())
+            usersRepo.clearDb()
+    }
 }

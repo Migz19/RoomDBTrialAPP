@@ -1,6 +1,5 @@
 package com.example.room_trial.model
 
-import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
@@ -13,10 +12,10 @@ data class UserModel(
     @ColumnInfo(defaultValue = "msp@gmail.com")
     var email: String? = null,
     @PrimaryKey(autoGenerate = true)
-    var id: Long, //Already defined as non null
+    var id: Long=0, //Already defined as non null
     var password: String? = null,
     var gender: Char? = null,
     @Ignore
-    var phoneNumber: String? = null,
+    var phoneNumber: String? = "122154151515",
 )
 

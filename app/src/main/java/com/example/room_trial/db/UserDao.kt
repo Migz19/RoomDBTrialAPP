@@ -33,4 +33,6 @@ interface UserDao {
 
     @Query("delete from users where id=:user_id")
     fun deleteUserById(user_id: Long)
+    @Query("delete from users")
+    fun clearDb()
 }
