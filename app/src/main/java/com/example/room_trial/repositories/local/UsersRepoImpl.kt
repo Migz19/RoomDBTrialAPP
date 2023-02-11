@@ -18,15 +18,18 @@ class UsersRepoImpl(private val userDao: UserDao) : UsersRepo {
     }
 
     override fun getAllUsers(): ArrayList<UserModel> = userDao.getAllUsers() as ArrayList
-    override fun getUsersByGender(gender: Char): Any? {
-        return when (gender) {
-            'm', 'M' -> userDao.getUsersByGender('m')
-            'f', 'F' -> userDao.getUsersByGender('f')
-            else -> null
+    //Checks if character is null returns empty list, if not returns list from database
+    override fun getUsersByGender(gender: Char?): ArrayList<UserModel> {
+        var usersList = ArrayList<UserModel>()
+        if (gender != null) {
+            usersList = userDao.getUsersByGender(gender) as ArrayList<UserModel>
         }
-
+        return usersList
     }
 
-    override fun deleteUserByName(username: String) = userDao.deleteUserByName(username)
+    override fun deleteUserById(user_id: Long) {
+        userDao.deleteUserById(user_id)
+    }
+
 
 }

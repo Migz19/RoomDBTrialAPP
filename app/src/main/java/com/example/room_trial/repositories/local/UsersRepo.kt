@@ -12,16 +12,16 @@ interface UsersRepo : UserDao, UsersApiService {
 
     override fun updateUserLocal(user: UserModel)
 
+
+    override fun getAllUsers(): List<UserModel>
+
+    override fun getUsersByGender(gender: Char?): List<UserModel>
+
+    override fun deleteUserById(user_id: Long)
     /////////////////////////////////////////////////
     override fun deleteUserfromRemote(user: UserModel) {
         super.deleteUserfromRemote(user)
     }
-
-    override fun getAllUsers(): List<UserModel>
-
-    override fun getUsersByGender(gender: Char): Any?
-
-    override fun deleteUserByName(username: String)
 
     override fun addUserToRemote(user: UserModel) {
         super.addUserToRemote(user)

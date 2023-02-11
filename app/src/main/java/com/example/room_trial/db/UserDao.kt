@@ -27,9 +27,10 @@ interface UserDao {
 
     //get list of users by specific attribute
     @Query("select * from users where gender =:gender order by id")
-    fun getUsersByGender(gender: Char): Any?
+    fun getUsersByGender(gender: Char?): List<UserModel>
 
     //Delete user by specific attribute
-    @Query("delete from users where name =:username ")
-    fun deleteUserByName(username: String)
+
+    @Query("delete from users where id=:user_id")
+    fun deleteUserById(user_id: Long)
 }
