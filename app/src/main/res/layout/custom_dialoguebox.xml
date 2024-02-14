@@ -8,6 +8,8 @@
     <EditText
         android:id="@+id/emailEditTxt"
         android:layout_width="360dp"
+        android:hint="email"
+        android:textColorHint="@color/purple_200"
         android:layout_height="63dp"
         android:layout_marginTop="52dp"
         android:ems="10"
@@ -25,6 +27,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="name"
+        android:textColorHint="@color/purple_200"
         android:inputType="textPersonName"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +41,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="gender"
+        android:textColorHint="@color/purple_200"
         android:inputType="textPersonName"
 
         app:layout_constraintStart_toEndOf="@+id/nameEditTxt"

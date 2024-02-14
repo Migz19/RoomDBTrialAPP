@@ -2,6 +2,7 @@ package com.example.room_trial
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,14 +14,19 @@ import com.example.room_trial.databinding.ActivityMainBinding
 import com.example.room_trial.databinding.CustomDialogueboxBinding
 import com.example.room_trial.db.UserDatabase
 import com.example.room_trial.model.UserModel
+import com.example.room_trial.repositories.local.UsersRepoImpl
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
 
 
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var dialogbinding: CustomDialogueboxBinding
+
     private val usersDatabase: UserDatabase by lazy {
         UserDatabase.getDatabase(baseContext)
     }
+
     private val userController: UserController by lazy {
         UserController(usersDatabase.userDao())
     }
@@ -29,13 +35,17 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        dialogbinding = CustomDialogueboxBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val usersRv = binding.recyclerView
-        usersRv.apply {
-            LinearLayoutManager(context)
-        }
+
         list = userController.getUsers()
         usersAdapter = UsersAdapter(list!!, this)
+
+
+        val usersRv = binding.recyclerView
+        usersRv.layoutManager = LinearLayoutManager(this)
+        usersRv.adapter = usersAdapter
+
         binding.clearBtn.setOnClickListener {
             userController.clearDb()
         }
@@ -43,7 +53,13 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             val user = showDialogBox(null)
             insertNewItem(user)
         }
-
+        binding.deleteBtn.setOnClickListener {
+            userController.addUser(UserModel("ahmed", "gmail", password = "kdfjfjsdkjf", gender = 'c'))
+            userController.addUser(UserModel("mazen", "gmail", password = "kdfjfjsdkjf", gender = 'c'))
+            userController.addUser(UserModel("mazen", "gmail", password = "kdfjfjsdkjf", gender = 'c'))
+            userController.addUser(UserModel("migz", "gmail", password = "kdfjfjsdkjf", gender = 'c'))
+            userController.addUser(UserModel("kamal", "gmail", password = "kdfjfjsdkjf", gender = 'c'))
+        }
     }
 
     private fun insertNewItem(user: UserModel?) {
@@ -57,6 +73,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     override fun updateItem(user: UserModel) {
         val newUser = showDialogBox(user)
+        dialogbinding.idTextView.visibility = View.VISIBLE
         if (newUser?.email == user.email && newUser?.name == user.name)
             return
         try {
@@ -67,26 +84,30 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun showDialogBox(user: UserModel?): UserModel? {
-        val binding = CustomDialogueboxBinding.inflate(layoutInflater)
+
         val dialog = Dialog(this)
+        dialog.create()
+        dialog.show()
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.custom_dialoguebox)
         if (user != null) {
-            binding.emailEditTxt.hint = user.email
-            binding.genderEditTxt.hint = user.gender.toString()
-            binding.nameEditTxt.hint = user.name
-            binding.idTextView.text = user.id.toString()
+            dialogbinding.emailEditTxt.hint = user.email
+            dialogbinding.genderEditTxt.hint = user.gender.toString()
+            dialogbinding.nameEditTxt.hint = user.name
+            dialogbinding.idTextView.text = user.id.toString()
         }
-        val email = binding.emailEditTxt.text.toString()
-        val name = binding.nameEditTxt.text.toString()
-        val gender: Char = binding.genderEditTxt.text.toString()[0]
+
         var user: UserModel? = null
-        binding.submitBtnn.setOnClickListener {
+        dialogbinding.submitBtnn.setOnClickListener {
+            val email = dialogbinding.emailEditTxt.text.toString()
+            val name = dialogbinding.nameEditTxt.text.toString()
+            val gender: Char = dialogbinding.genderEditTxt.text.toString()[0]
             user = UserModel(email = email, name = name, gender = gender)
             dialog.dismiss()
         }
-        dialog.show()
+
         return user
     }
-}
+
+    }

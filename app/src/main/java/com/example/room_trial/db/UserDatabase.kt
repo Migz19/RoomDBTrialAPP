@@ -4,9 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverter
+import com.example.room_trial.db.typeconverters.dateLongConverter
 import com.example.room_trial.model.UserModel
 //Data Layer
 @Database(entities = [UserModel::class], version = 1, exportSchema = false)
+
  abstract class UserDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao

@@ -12,7 +12,8 @@ interface UserDao {
     //Ignore --> Neglect new insertion
     //Abort --> Default option , Room will throw a SQLiteConstraintException
     None --> malhash lazma w fl runtime btt3aml zy el ABORT wl default
-
+    ("Ahmed","Ahmed@gmail",12345)
+   ("ali","ali@gmail",12345)
      */
     fun addUserLocal(user: UserModel)
 

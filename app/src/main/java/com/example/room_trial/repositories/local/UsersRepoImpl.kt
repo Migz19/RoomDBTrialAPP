@@ -10,11 +10,11 @@ class UsersRepoImpl(private val userDao: UserDao) : UsersRepo {
     }
 
     override fun deleteUserLocal(user: UserModel) {
-        userDao.updateUserLocal(user)
+        userDao.deleteUserLocal(user)
     }
 
     override fun updateUserLocal(user: UserModel) {
-        userDao.deleteUserLocal(user)
+        userDao.updateUserLocal(user)
     }
 
     override fun getAllUsers(): ArrayList<UserModel> = userDao.getAllUsers() as ArrayList
