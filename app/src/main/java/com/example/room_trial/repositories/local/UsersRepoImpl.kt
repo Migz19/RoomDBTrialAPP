@@ -1,6 +1,6 @@
 package com.example.room_trial.repositories.local
 
-import com.example.room_trial.db.UserDao
+import com.example.room_trial.data.db.UserDao
 import com.example.room_trial.model.UserModel
 
 //Data Layer

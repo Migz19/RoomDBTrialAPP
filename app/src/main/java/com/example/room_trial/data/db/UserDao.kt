@@ -1,4 +1,4 @@
-package com.example.room_trial.db
+package com.example.room_trial.data.db
 
 import androidx.room.*
 import com.example.room_trial.model.UserModel

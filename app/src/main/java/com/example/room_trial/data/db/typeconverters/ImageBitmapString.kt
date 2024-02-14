@@ -1,4 +1,4 @@
-package com.example.room_trial.db.typeconverters
+package com.example.room_trial.data.db.typeconverters
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

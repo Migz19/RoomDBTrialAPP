@@ -1,4 +1,4 @@
-package com.example.room_trial.db.typeconverters
+package com.example.room_trial.data.db.typeconverters
 
 import androidx.room.TypeConverter
 import java.util.*

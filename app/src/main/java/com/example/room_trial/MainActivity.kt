@@ -12,7 +12,7 @@ import com.example.room_trial.controller.OnItemClickListener
 import com.example.room_trial.controller.UserController
 import com.example.room_trial.databinding.ActivityMainBinding
 import com.example.room_trial.databinding.CustomDialogueboxBinding
-import com.example.room_trial.db.UserDatabase
+import com.example.room_trial.data.db.UserDatabase
 import com.example.room_trial.model.UserModel
 import com.example.room_trial.repositories.local.UsersRepoImpl
 
